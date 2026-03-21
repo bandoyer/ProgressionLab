@@ -4,6 +4,12 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
+  <Folder Name="/.solution-items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+  </Folder>
   <Folder Name="/docs/">
     <File Path="docs\barbell-medicine-notes.md" />
     <File Path="docs\conversation-notes.md" />
@@ -36,11 +42,5 @@
       <BuildDependency Project="src/ProgressionLab.Infrastructure/ProgressionLab.Infrastructure.csproj" />
     </Project>
     <Project Path="tests/ProgressionLab.UnitTests/ProgressionLab.UnitTests.csproj" />
-  </Folder>
-  <Folder Name="/_Solution Items/">
-    <File Path=".editorconfig" />
-    <File Path=".gitignore" />
-    <File Path="Directory.Build.props" />
-    <File Path="Directory.Packages.props" />
   </Folder>
 </Solution>
