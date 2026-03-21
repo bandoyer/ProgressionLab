@@ -6,6 +6,7 @@
   </Configurations>
   <Folder Name="/docs/">
     <File Path="docs\barbell-medicine-notes.md" />
+    <File Path="docs\conversation-notes.md" />
     <File Path="docs\design-decisions.md" />
   </Folder>
   <Folder Name="/docs/event-storming/">
