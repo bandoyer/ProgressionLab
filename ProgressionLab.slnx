@@ -9,6 +9,7 @@
     <File Path="docs\design-decisions.md" />
   </Folder>
   <Folder Name="/docs/event-storming/">
+    <File Path="docs\event-storming\aggregates.md" />
     <File Path="docs\event-storming\appregates.md" />
     <File Path="docs\event-storming\bounded-contexts.md" />
     <File Path="docs\event-storming\commands.md" />
@@ -21,7 +22,6 @@
     <File Path=".editorconfig" />
     <File Path=".gitignore" />
     <File Path=".template.config/template.json" />
-    <File Path="CleanArchitecture.nuspec" />
     <File Path="Directory.Build.props" />
     <File Path="Directory.Packages.props" />
   </Folder>
