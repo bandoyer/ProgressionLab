@@ -11,20 +11,12 @@
   </Folder>
   <Folder Name="/docs/event-storming/">
     <File Path="docs\event-storming\aggregates.md" />
-    <File Path="docs\event-storming\appregates.md" />
     <File Path="docs\event-storming\bounded-contexts.md" />
     <File Path="docs\event-storming\commands.md" />
     <File Path="docs\event-storming\domain-events.md" />
     <File Path="docs\event-storming\hotspots.md" />
     <File Path="docs\event-storming\README.md" />
     <File Path="docs\event-storming\ubiquitous-language.md" />
-  </Folder>
-  <Folder Name="/Solution Items/">
-    <File Path=".editorconfig" />
-    <File Path=".gitignore" />
-    <File Path=".template.config/template.json" />
-    <File Path="Directory.Build.props" />
-    <File Path="Directory.Packages.props" />
   </Folder>
   <Folder Name="/src/">
     <Project Path="src/ProgressionLab.Core/ProgressionLab.Core.csproj" />
@@ -44,5 +36,11 @@
       <BuildDependency Project="src/ProgressionLab.Infrastructure/ProgressionLab.Infrastructure.csproj" />
     </Project>
     <Project Path="tests/ProgressionLab.UnitTests/ProgressionLab.UnitTests.csproj" />
+  </Folder>
+  <Folder Name="/_Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
   </Folder>
 </Solution>
