@@ -7,40 +7,40 @@ public class RpeTests
   [Fact]
   public void CanCreateRpeOfTen()
   {
-    var rpe10 = new RateOfPerceivedExertion(10);
+    var rpe10 = RPE.From(10);
     rpe10.Value.ShouldBe(10);
   }
 
   [Fact]
   public void CanCreateRpeOfNinePointFive()
   {
-    var rpe95 = new RateOfPerceivedExertion(9.5m);
+    var rpe95 = RPE.From(9.5m);
     rpe95.Value.ShouldBe(9.5m);
   }
 
   [Fact]
   public void CannotCreateRpeGreaterThanTen()
   {
-    Should.Throw<ArgumentOutOfRangeException>(() => new RateOfPerceivedExertion(11));
+    Should.Throw<ArgumentOutOfRangeException>(() => RPE.From(11));
   }
   
   [Fact]
   public void CannotCreateRpeLessThanOne()
   {
-    Should.Throw<ArgumentOutOfRangeException>(() => new RateOfPerceivedExertion(0));
+    Should.Throw<ArgumentOutOfRangeException>(() => RPE.From(0));
   }
 
   [Fact]
   public void CannotCreateRpeThatIsNotDivisibleByHalf()
   {
-    Should.Throw<ArgumentOutOfRangeException>(() => new RateOfPerceivedExertion(9.7m));
+    Should.Throw<ArgumentOutOfRangeException>(() => RPE.From(9.7m));
   }
   
   [Fact]
   public void TwoRpesAreEqual()
   {
-    var rpe10 = new RateOfPerceivedExertion(10);
-    var rpe10Again = new RateOfPerceivedExertion(10);
+    var rpe10 = RPE.From(10);
+    var rpe10Again = RPE.From(10);
     rpe10.ShouldBe(rpe10Again);
   }
 }

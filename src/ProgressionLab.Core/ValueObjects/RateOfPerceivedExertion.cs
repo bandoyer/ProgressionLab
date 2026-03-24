@@ -1,4 +1,6 @@
-﻿namespace ProgressionLab.Core.ValueObjects;
+﻿using Vogen;
+
+namespace ProgressionLab.Core.ValueObjects;
 
 public readonly record struct RateOfPerceivedExertion 
 {
@@ -12,6 +14,23 @@ public readonly record struct RateOfPerceivedExertion
       throw new ArgumentOutOfRangeException(nameof(value), "RPE must be divisible by 0.5.");
     Value = value;
   }
+  
+  public static RateOfPerceivedExertion Of(decimal rpe) => new(rpe);
 
   public decimal Value { get; }
 }
+
+[ValueObject<decimal>]                                                                                                                                                                                          
+public readonly partial struct RPE                                                                                                                                                                              
+{                                                                                                                                                                                                               
+  private static Validation Validate(decimal value)
+  {                                                                                                                                                                                                           
+    if (value < 1m)
+      return Validation.Invalid("RPE must be >= 1.");
+    if (value > 10m)                                                                                                                                                                                        
+      return Validation.Invalid("RPE must be <= 10.");
+    if (value % 0.5m != 0m)                                                                                                                                                                                 
+      return Validation.Invalid("RPE must be divisible by 0.5.");
+    return Validation.Ok;                                                                                                                                                                                   
+  }
+}  
