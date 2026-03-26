@@ -21,19 +21,19 @@ public class RpeTests
   [Fact]
   public void CannotCreateRpeGreaterThanTen()
   {
-    Should.Throw<ArgumentOutOfRangeException>(() => RPE.From(11));
+    Should.Throw<Vogen.ValueObjectValidationException>(() => RPE.From(11));
   }
   
   [Fact]
   public void CannotCreateRpeLessThanOne()
   {
-    Should.Throw<ArgumentOutOfRangeException>(() => RPE.From(0));
+    Should.Throw<Vogen.ValueObjectValidationException>(() => RPE.From(0));
   }
 
   [Fact]
   public void CannotCreateRpeThatIsNotDivisibleByHalf()
   {
-    Should.Throw<ArgumentOutOfRangeException>(() => RPE.From(9.7m));
+    Should.Throw<Vogen.ValueObjectValidationException>(() => RPE.From(9.7m));
   }
   
   [Fact]
