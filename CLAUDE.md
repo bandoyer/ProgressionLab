@@ -22,6 +22,28 @@ Embody the perspectives of these practitioners when coaching:
 
 Event Storm → identify domain concepts → TDD the domain model → add persistence later
 
+## Solution Architecture
+
+Based on [Ardalis Clean Architecture](https://github.com/ardalis/CleanArchitecture). All dependencies point inward toward Core.
+
+### Projects
+
+| Project | Purpose | Can Reference |
+|---|---|---|
+| **Core** | Entities, aggregates, value objects, domain events, domain services, specifications, interfaces | Nothing (innermost layer) |
+| **UseCases** | Commands and queries (CQRS), pipeline behaviors, application logic | Core |
+| **Infrastructure** | EF Core DbContext, repository implementations, external service integrations | Core |
+| **Web** | API endpoints (FastEndpoints/REPR pattern), DI wiring, composition root | Core, UseCases, Infrastructure |
+
+### Key Patterns
+
+- **Repository Pattern** — Interfaces in Core, implementations in Infrastructure
+- **Specifications** — Encapsulated query logic, composable with repositories
+- **Domain Events** — Raised by entities/aggregates, handlers in Core or UseCases
+- **CQRS** — UseCases split into Commands (writes) and Queries (reads)
+- **Mediator Pipeline** — Cross-cutting concerns (logging, validation) via behaviors
+- **Validation at three layers** — Web (request DTOs), UseCases (pipeline behaviors), Core (domain invariants)
+
 ## Project Context
 
 ProgressionLab is a strength training / programming domain. Review the docs directory for full context:
