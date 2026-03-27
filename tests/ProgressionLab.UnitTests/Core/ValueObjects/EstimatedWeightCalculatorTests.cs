@@ -3,33 +3,21 @@ using ProgressionLab.Core.ValueObjects;
 
 namespace ProgressionLab.UnitTests.Core.ValueObjects;
 
-public class RpeCalculationTests
+public class EstimatedWeightCalculatorTests
 {
   [Fact]
   public void GivenOneRepMaxItWillCalculateRpe10()
   {
-    // Given one rep max, to calculate RPE 10, it will return the 1RM
     var oneRepMax = 100;
-    
-    // The calculator needs a 1RM to work, force it
-    var calculator = new EstimatedWeightCalculator(oneRepMax);
-    
-    var weightAtRpe10 = calculator.GetEstimatedWeight(1, RPE.From(10));
-    
+    var weightAtRpe10 = EstimatedWeightCalculator.GetWeight(1, RPE.From(10), oneRepMax);
     weightAtRpe10.ShouldBe(100);
   }
   
   [Fact]
   public void GivenOneRepMaxItWillCalculateRpe9_5()
   {
-    // Given one rep max, to calculate RPE 10, it will return the 1RM
     var oneRepMax = 100;
-    
-    // The calculator needs a 1RM to work, force it
-    var calculator = new EstimatedWeightCalculator(oneRepMax);
-    
-    var weightAtRpe9_5 = calculator.GetEstimatedWeight(1, RPE.From(9.5m));
-    
+    var weightAtRpe9_5 = EstimatedWeightCalculator.GetWeight(1, RPE.From(9.5m), oneRepMax);
     weightAtRpe9_5.ShouldBe(97.8m);
   }
   
@@ -53,8 +41,28 @@ public class RpeCalculationTests
   [MemberData(nameof(RepToRpeData))]
   public void GivenOneRepMaxItWillCalculateRpe(int repCount, RPE rpe, decimal expectedWeight)
   {
-    var calculator = new EstimatedWeightCalculator(100);
-    var weight = calculator.GetEstimatedWeight(repCount, rpe);                                                                                                                                        
+    var weight = EstimatedWeightCalculator.GetWeight(repCount, rpe, 100);                                                                                                                                        
     weight.ShouldBe(expectedWeight);
+  }
+  
+  [Fact]
+  public void GivenRpeTenAtOneRepWillReturnOneRepMax()
+  {
+    var weight = EstimatedWeightCalculator.GetOneRepMax(100m, 1, RPE.From(10));
+    weight.ShouldBe(100);
+  }
+  
+  [Fact]
+  public void GivenRpeEightAtOneRepWillReturnOneRepMaxRoundedToNearestDecimal()
+  {
+    var weight = EstimatedWeightCalculator.GetOneRepMax(100m, 1, RPE.From(8));
+    weight.ShouldBe(108.5m);
+  }
+
+  [Fact]
+  public void GivenRpeNineAtTwoRepsReturnOneRepMaxRoundedToNearestDecimal()
+  {
+    var weight = EstimatedWeightCalculator.GetOneRepMax(100, 2, RPE.From(9));
+    weight.ShouldBe(108.5m);
   }
 }
