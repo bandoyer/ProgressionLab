@@ -71,17 +71,6 @@ public static class MiddlewareConfig
     var services = scope.ServiceProvider;
     var logger = services.GetRequiredService<ILogger<Program>>();
 
-    try
-    {
-      logger.LogInformation("Seeding database...");
-      var context = services.GetRequiredService<AppDbContext>();
-      await SeedData.InitializeAsync(context);
-      logger.LogInformation("Database seeded successfully");
-    }
-    catch (Exception ex)
-    {
-      logger.LogError(ex, "An error occurred seeding the DB. {exceptionMessage}", ex.Message);
-      // Don't re-throw for seeding errors - it's not critical
-    }
+    // TODO: Add seed data when domain entities are ready
   }
 }

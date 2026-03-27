@@ -1,8 +1,4 @@
-﻿using ProgressionLab.Core.Interfaces;
-using ProgressionLab.Core.Services;
-using ProgressionLab.Infrastructure.Data;
-using ProgressionLab.Infrastructure.Data.Queries;
-using ProgressionLab.UseCases.Contributors.List;
+﻿using ProgressionLab.Infrastructure.Data;
 
 namespace ProgressionLab.Infrastructure;
 public static class InfrastructureServiceExtensions
@@ -44,8 +40,7 @@ public static class InfrastructureServiceExtensions
 
     services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>))
            .AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>))
-           .AddScoped<IListContributorsQueryService, ListContributorsQueryService>()
-           .AddScoped<IDeleteContributorService, DeleteContributorService>();
+;
 
     logger.LogInformation("{Project} services registered", "Infrastructure");
 

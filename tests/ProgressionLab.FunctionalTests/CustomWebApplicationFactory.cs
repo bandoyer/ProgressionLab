@@ -47,16 +47,11 @@ public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProg
 
       try
       {
-        // Apply migrations to create the database schema
         db.Database.Migrate();
-        
-        // Seed the database with test data.
-        SeedData.PopulateTestDataAsync(db).Wait();
       }
       catch (Exception ex)
       {
-        logger.LogError(ex, "An error occurred seeding the " +
-                            "database with test messages. Error: {exceptionMessage}", ex.Message);
+        logger.LogError(ex, "An error occurred setting up the test database. Error: {exceptionMessage}", ex.Message);
       }
     }
 

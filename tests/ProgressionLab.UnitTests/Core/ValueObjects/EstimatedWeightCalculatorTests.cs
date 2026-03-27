@@ -1,5 +1,4 @@
-﻿using ProgressionLab.Core.Services;
-using ProgressionLab.Core.ValueObjects;
+﻿using ProgressionLab.Core.ValueObjects;
 
 namespace ProgressionLab.UnitTests.Core.ValueObjects;
 

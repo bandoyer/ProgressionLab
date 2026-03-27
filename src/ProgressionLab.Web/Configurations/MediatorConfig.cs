@@ -1,7 +1,5 @@
 ﻿using Ardalis.SharedKernel;
-using ProgressionLab.Core.ContributorAggregate;
 using ProgressionLab.Infrastructure;
-using ProgressionLab.UseCases.Contributors.Create;
 
 namespace ProgressionLab.Web.Configurations;
 
@@ -20,8 +18,6 @@ public static class MediatorConfig
       // Supply any TYPE from each assembly you want scanned (the generator finds the assembly from the type)
       options.Assemblies =
       [
-        typeof(Contributor),                       // Core
-        typeof(CreateContributorCommand),         // UseCases
         typeof(InfrastructureServiceExtensions), // Infrastructure
         typeof(MediatorConfig)                  // Web
       ];

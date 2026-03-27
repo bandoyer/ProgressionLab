@@ -1,10 +1,6 @@
-﻿using ProgressionLab.Core.ContributorAggregate;
-
-namespace ProgressionLab.Infrastructure.Data;
+﻿namespace ProgressionLab.Infrastructure.Data;
 public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
-  public DbSet<Contributor> Contributors => Set<Contributor>();
-
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
     base.OnModelCreating(modelBuilder);
