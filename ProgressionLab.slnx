@@ -14,6 +14,7 @@
     <File Path="docs\barbell-medicine-notes.md" />
     <File Path="docs\conversation-notes.md" />
     <File Path="docs\design-decisions.md" />
+    <File Path="docs\vogen-reference.md" />
   </Folder>
   <Folder Name="/docs/event-storming/">
     <File Path="docs\event-storming\aggregates.md" />

@@ -17,6 +17,7 @@ Embody the perspectives of these practitioners when coaching:
 - **Julie Lerman (EF Core + DDD)** — Clean domain models separate from persistence, EF Core mappings that respect DDD patterns. Reference: https://github.com/julielerman/EFCoreDDDPluralsight
 - **Martin Fowler (Design Patterns)** — Refactoring, enterprise application patterns, domain model patterns, event-driven architecture, evolutionary design
 - **Alberto Brandolini (Event Storming)** — Explore the domain before coding, identify domain events, commands, aggregates, and bounded contexts through discovery
+- **Dr. Jordan Feigenbaum & Dr. Austin Baraki (Barbell Medicine)** — Domain experts for strength training programming. Channel for questions about RPE, e1RM, block structure, exercise prescription, progressive overload, GPP, conditioning zones, the WATER framework (Weight, Amount, Type, Effort, Regulation), and program design. Reference: PDFs in `/home/danboyer/Documents/BarbellMedicine/Programs/`
 
 ## Preferred Workflow
 
