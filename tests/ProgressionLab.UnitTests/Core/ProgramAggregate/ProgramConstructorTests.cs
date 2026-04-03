@@ -1,5 +1,4 @@
 ﻿using ProgressionLab.Core.ProgramAggregate;
-using ProgressionLab.UnitTests.Builders;
 
 namespace ProgressionLab.UnitTests.Core.ProgramAggregate;
 
@@ -8,7 +7,7 @@ public class ProgramConstructorTests
   [Fact]
   public void ProgramMustHaveAName()
   {
-    var action = () => new ProgramBuilder().WithName(string.Empty).Build();
+    var action = () => new Program(ProgramName.From(string.Empty));
     Should.Throw<Vogen.ValueObjectValidationException>(action);
   }
 
@@ -16,14 +15,14 @@ public class ProgramConstructorTests
   public void ProgramMustNotExceedCharacterLimit()
   {
     var longName = string.Concat(Enumerable.Repeat("I", ProgramName.MaxLength + 1));
-    var action = () => new ProgramBuilder().WithName(longName).Build();
+    var action = () => new Program(ProgramName.From(longName));
     Should.Throw<Vogen.ValueObjectValidationException>(action);
   }
 
   [Fact]
   public void ProgramNameMustWhenCreatedWillBeTrimmed()
   {
-    var program = new ProgramBuilder().WithName("     Test program name       ").Build();
+    var program = new Program(ProgramName.From("     Test program name       "));
     program.Name.Value.ShouldBe("Test program name");
   }
 }
