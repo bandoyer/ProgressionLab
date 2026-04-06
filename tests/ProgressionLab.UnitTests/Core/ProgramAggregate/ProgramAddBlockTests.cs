@@ -23,7 +23,8 @@ public class ProgramAddBlockTests
   [Fact]
   public void ProgramBlockNameWillBeTrimmedWhenCreated()
   {
-    var block = new Block(BlockName.From("       Test block       "));
+    var program = new Program(ProgramName.From("test prog"));
+    var block = program.CreateBlock(BlockName.From("       Test block       "));
     block.Name.Value.ShouldBe("Test block");
   }
 

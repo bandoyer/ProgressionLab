@@ -8,17 +8,18 @@ public class Week
   }
   
   public WeekNumber Number { get; private set; }
-  private List<Slot> Slots = [];
-  
-  public Slot CreateSlot()
+  private List<TrainingDay> TrainingDays = [];
+
+  public TrainingDay CreateTrainingDay()
   {
-    var slot = new Slot();
-    Slots.Add(slot);
-    return slot;
+    var trainingDayNumber = TrainingDayNumber.From(TrainingDays.Count + 1);
+    var trainingDay = new TrainingDay(trainingDayNumber);
+    TrainingDays.Add(trainingDay);
+    return trainingDay;
   }
 
-  public IReadOnlyList<Slot> GetSlots()
+  public IReadOnlyList<TrainingDay> GetTrainingDays()
   {
-    return Slots.AsReadOnly();
+    return TrainingDays.AsReadOnly();
   }
 }

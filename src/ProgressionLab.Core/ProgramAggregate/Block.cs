@@ -1,8 +1,13 @@
 ﻿namespace ProgressionLab.Core.ProgramAggregate;
 
-public class Block(BlockName name)
+public class Block
 {
-  public BlockName Name { get; private set; } = name;
+  internal Block(BlockName name)
+  {
+    Name = name;
+  }
+
+  public BlockName Name { get; private set; }
   private List<Week> Weeks { get; } = [];
 
   public Week CreateWeek()
@@ -13,8 +18,14 @@ public class Block(BlockName name)
     return week;
   }
 
-  public IReadOnlyList<Week> GetWeeks()
+  public IReadOnlyList<Week> GetWeeks() => Weeks.AsReadOnly();
+
+  public void RemoveWeek(Week week) => Weeks.Remove(week);
+
+  public void RemoveWeek(WeekNumber weekNumber)
   {
-    return Weeks.AsReadOnly();
+    var week = Weeks.SingleOrDefault(w => w.Number == weekNumber);
+    if (week != null)
+      Weeks.Remove(week);
   }
 }

@@ -2,11 +2,15 @@
 
 namespace ProgressionLab.Core.ProgramAggregate;
 
-public class Program(ProgramName name) : EntityBase<Program, ProgramId>
+public class Program : EntityBase<Program, ProgramId>
 {
-  public ProgramName Name { get; private set;  } = name;
+  public ProgramName Name { get; private set;  }
   private List<Block> Blocks { get; } = [];
+
+  private Program() { }
   
+  public Program(ProgramName name) => Name = name;
+
   public Block CreateBlock(BlockName name)
   {
     var isDuplicate = Blocks.Any(b => b.Name == name);
@@ -18,14 +22,12 @@ public class Program(ProgramName name) : EntityBase<Program, ProgramId>
     return block;
   }
 
-  public IReadOnlyList<Block> GetBlocks()
-  {
-    return Blocks.AsReadOnly();
-  }
-  
+  public IReadOnlyList<Block> GetBlocks() => Blocks.AsReadOnly();
+
   public void RemoveBlock(Block block)
   {
-    Blocks.Remove(block);
+    if (Blocks.Contains(block))
+      Blocks.Remove(block);
   }
 
   public void RemoveBlock(BlockName blockName)
