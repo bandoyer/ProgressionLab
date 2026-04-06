@@ -79,4 +79,14 @@ public class BlockCreateWeekTests
     var action = () => program.CreateBlock(BlockName.From("block 1"));
     action.ShouldThrow<DuplicateBlockNameException>();
   }
+  
+  [Fact]
+  public void AddingDuplicateBlockMixedCaseWillThrowException()
+  {
+    var program = new Program(ProgramName.From("test prog"));
+    program.CreateBlock(BlockName.From("block 1"));
+
+    var action = () => program.CreateBlock(BlockName.From("BLOCK 1"));
+    action.ShouldThrow<DuplicateBlockNameException>();
+  }
 }

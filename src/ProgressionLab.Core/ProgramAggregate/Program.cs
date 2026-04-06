@@ -13,7 +13,7 @@ public class Program : EntityBase<Program, ProgramId>
 
   public Block CreateBlock(BlockName name)
   {
-    var isDuplicate = Blocks.Any(b => b.Name == name);
+    var isDuplicate = Blocks.Any(b => string.Equals(b.Name.Value, name.Value, StringComparison.OrdinalIgnoreCase));
     if (isDuplicate)
       throw new DuplicateBlockNameException();
     
@@ -26,8 +26,7 @@ public class Program : EntityBase<Program, ProgramId>
 
   public void RemoveBlock(Block block)
   {
-    if (Blocks.Contains(block))
-      Blocks.Remove(block);
+    Blocks.Remove(block);
   }
 
   public void RemoveBlock(BlockName blockName)
