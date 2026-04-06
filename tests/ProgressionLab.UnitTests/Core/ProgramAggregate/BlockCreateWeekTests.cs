@@ -1,4 +1,5 @@
 ﻿using ProgressionLab.Core.ProgramAggregate;
+using ProgressionLab.Core.ProgramAggregate.Exceptions;
 
 namespace ProgressionLab.UnitTests.Core.ProgramAggregate;
 
@@ -8,7 +9,7 @@ public class BlockCreateWeekTests
   public void ProgramBlockCanHaveZeroWeeksWhileSettingUp()
   {
     var program = new Program(ProgramName.From("test program"));
-    program.AddBlock(BlockName.From("block 1"));
+    program.CreateBlock(BlockName.From("block 1"));
 
     var block = program.GetBlocks().Single();
 
@@ -19,7 +20,7 @@ public class BlockCreateWeekTests
   public void ProgramBlocksCanHaveOneWeek()
   {
     var program = new Program(ProgramName.From("test program"));
-    program.AddBlock(BlockName.From("block 1"));
+    program.CreateBlock(BlockName.From("block 1"));
 
     var block = program.GetBlocks().Single();
     block.CreateWeek();
@@ -31,7 +32,7 @@ public class BlockCreateWeekTests
   public void ProgramBlocksCanHaveMultipleWeeks()
   {
     var program = new Program(ProgramName.From("test program"));
-    program.AddBlock(BlockName.From("block 1"));
+    program.CreateBlock(BlockName.From("block 1"));
 
     var block = program.GetBlocks().Single();
     block.CreateWeek();
@@ -44,7 +45,7 @@ public class BlockCreateWeekTests
   public void BlockWeekWillAlwaysStartWithOne()
   {
     var program = new Program(ProgramName.From("test program"));
-    program.AddBlock(BlockName.From("block 1"));
+    program.CreateBlock(BlockName.From("block 1"));
 
     var block = program.GetBlocks().Single();
     block.CreateWeek();
@@ -57,7 +58,7 @@ public class BlockCreateWeekTests
   public void AddingSecondWeekWillWillAutoAssignNumberOfTwo()
   {
     var program = new Program(ProgramName.From("test program"));
-    program.AddBlock(BlockName.From("block 1"));
+    program.CreateBlock(BlockName.From("block 1"));
 
     var block = program.GetBlocks().Single();
     block.CreateWeek();
@@ -67,5 +68,15 @@ public class BlockCreateWeekTests
     weeks.Count.ShouldBe(2);
     weeks.Single(w => w.Number == WeekNumber.From(2))
       .ShouldNotBeNull();
+  }
+
+  [Fact]
+  public void AddingDuplicateBlockWillThrowException()
+  {
+    var program = new Program(ProgramName.From("test prog"));
+    program.CreateBlock(BlockName.From("block 1"));
+
+    var action = () => program.CreateBlock(BlockName.From("block 1"));
+    action.ShouldThrow<DuplicateBlockNameException>();
   }
 }

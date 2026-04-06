@@ -8,7 +8,7 @@ public class ProgramAddBlockTests
   public void ProgramsCanAddBlocks()
   {
     var program = new Program(ProgramName.From("Test program"));
-    program.AddBlock(BlockName.From("test"));
+    program.CreateBlock(BlockName.From("test"));
     program.GetBlocks().Count.ShouldBe(1);
   }
 
@@ -16,7 +16,7 @@ public class ProgramAddBlockTests
   public void ProgramBlockCanBeNamed()
   {
     var program = new Program(ProgramName.From("Test program"));
-    program.AddBlock(BlockName.From("Block I"));
+    program.CreateBlock(BlockName.From("Block I"));
     program.GetBlocks().Single().Name.Value.ShouldBe("Block I");
   }
 
@@ -31,7 +31,7 @@ public class ProgramAddBlockTests
   public void ProgramBlockMustHaveAName()
   {
     var program = new Program(ProgramName.From("Test program"));
-    var action = () => program.AddBlock(BlockName.From(string.Empty));
+    var action = () => program.CreateBlock(BlockName.From(string.Empty));
     Should.Throw<Vogen.ValueObjectValidationException>(action);
   }
 
@@ -40,7 +40,7 @@ public class ProgramAddBlockTests
   {
     var program = new Program(ProgramName.From("Test program"));
     var longBlockName = string.Concat(Enumerable.Repeat("I", BlockName.MaxLength + 1));
-    var action = () => program.AddBlock(BlockName.From(longBlockName));
+    var action = () => program.CreateBlock(BlockName.From(longBlockName));
     Should.Throw<Vogen.ValueObjectValidationException>(action);
   }
 }
