@@ -25,4 +25,15 @@ public class WeekRemovalTests
     block.RemoveWeek(WeekNumber.From(week.Number.Value));
     block.GetWeeks().ShouldBeEmpty();
   }
+  
+  [Fact]
+  public void RemovingWeekThatDoesNotExistWillSkipAndContinue()
+  {
+    var program = new Program(ProgramName.From("test prog"));
+    var block = program.CreateBlock(BlockName.From("block 1"));
+    var week = block.CreateWeek();
+    block.RemoveWeek(WeekNumber.From(week.Number.Value + 1)); // invalid week number
+    
+    block.GetWeeks().Count.ShouldBe(1);
+  }
 }
