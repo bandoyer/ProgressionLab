@@ -43,11 +43,17 @@ public class WeekRemovalTests
     var program = new Program(ProgramName.From("test prog"));
     var block = program.CreateBlock(BlockName.From("block 1"));
     block.CreateWeek();
-    var finalWeek = block.CreateWeek();
-    block.RemoveWeek(finalWeek);
-
     block.CreateWeek();
-    block.GetWeeks().Count.ShouldBe(2);
-    block.GetWeeks().Single(w => w.Number == WeekNumber.From(2)).Number.Value.ShouldBe(2);
+    var thirdWeek = block.CreateWeek();
+
+    block.RemoveWeek(thirdWeek);
+    var newThirdWeek = block.CreateWeek();
+
+    newThirdWeek.Number.ShouldBe(WeekNumber.From(3));
+    block.GetWeeks().Select(w => w.Number).ShouldBe([
+      WeekNumber.From(1),
+      WeekNumber.From(2),
+      WeekNumber.From(3)
+    ]);
   }
 }
