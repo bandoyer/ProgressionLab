@@ -4,8 +4,8 @@ namespace ProgressionLab.Core.ProgramAggregate;
 
 public class Program : EntityBase<Program, ProgramId>
 {
-  public ProgramName Name { get; private set;  }
   private List<Block> Blocks { get; } = [];
+  public ProgramName Name { get; private set;  }
 
   private Program() { }
   

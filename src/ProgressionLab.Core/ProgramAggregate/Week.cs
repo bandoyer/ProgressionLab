@@ -2,13 +2,14 @@
 
 public class Week
 {
+  private List<TrainingDay> TrainingDays = [];
+
+  public WeekNumber Number { get; private set; }
+  
   internal Week(WeekNumber weekNumber)
   {
     Number = weekNumber;
   }
-  
-  public WeekNumber Number { get; private set; }
-  private List<TrainingDay> TrainingDays = [];
 
   public TrainingDay CreateTrainingDay()
   {

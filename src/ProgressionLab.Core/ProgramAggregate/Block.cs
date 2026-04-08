@@ -2,13 +2,14 @@
 
 public class Block
 {
+  private List<Week> Weeks { get; } = [];
+  
+  public BlockName Name { get; private set; }
+  
   internal Block(BlockName name)
   {
     Name = name;
   }
-
-  public BlockName Name { get; private set; }
-  private List<Week> Weeks { get; } = [];
 
   public Week CreateWeek()
   {
