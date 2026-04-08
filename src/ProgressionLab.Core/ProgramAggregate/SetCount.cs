@@ -1,6 +1,6 @@
 ﻿using Vogen;
 
-namespace ProgressionLab.Core.ValueObjects;
+namespace ProgressionLab.Core.ProgramAggregate;
 
 [ValueObject<int>]
 public readonly partial struct SetCount

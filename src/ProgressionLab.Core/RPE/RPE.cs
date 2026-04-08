@@ -1,6 +1,6 @@
 ﻿using Vogen;
 
-namespace ProgressionLab.Core.ValueObjects;
+namespace ProgressionLab.Core.RPE;
 
 [ValueObject<decimal>]                                                                                                                                                                                          
 public readonly partial struct RPE                                                                                                                                                                              

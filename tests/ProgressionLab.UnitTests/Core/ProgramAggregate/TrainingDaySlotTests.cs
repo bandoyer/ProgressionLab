@@ -1,5 +1,7 @@
 ﻿using ProgressionLab.Core.ProgramAggregate;
-using ProgressionLab.Core.ValueObjects;
+using ProgressionLab.Core.RPE;
+using Reps = ProgressionLab.Core.ProgramAggregate.Reps;
+using SetCount = ProgressionLab.Core.ProgramAggregate.SetCount;
 
 namespace ProgressionLab.UnitTests.Core.ProgramAggregate;
 

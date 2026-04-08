@@ -1,4 +1,4 @@
-﻿namespace ProgressionLab.Core.ValueObjects;
+﻿namespace ProgressionLab.Core.RPE;
 
 public sealed record RpePercentages
 {
@@ -31,10 +31,9 @@ public sealed record RpePercentages
     {(12, 10m), .68m}, {(12, 9.5m), .667m}, {(12, 9m), .653m}, {(12, 8.5m), .64m}, {(12, 8m), .626m}, {(12, 7.5m), .613m}, {(12, 7m), .599m}, {(12, 6.5m), .586m}, {(12, 6m), .572m},
   };
 
-
-  public static decimal Get(int reps, RPE rpe)
+  public static decimal Get(ProgramAggregate.Reps reps, RPE rpe)
   {
-    var key = (reps, rpe.Value);
+    var key = (reps.Value, rpe.Value);
     
     if (!Table.TryGetValue(key, out var percentage))
       throw new DomainException($"No RPE percentage exists for {reps} reps at RPE {rpe.Value}.");

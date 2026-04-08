@@ -1,15 +1,16 @@
 ﻿using ProgressionLab.Core;
-using ProgressionLab.Core.ValueObjects;
+using ProgressionLab.Core.RPE;
+using Reps = ProgressionLab.Core.ProgramAggregate.Reps;
 
-namespace ProgressionLab.UnitTests.Core.ValueObjects;
+namespace ProgressionLab.UnitTests.Core.RPETests;
 
 public class RpePercentagesTableTests
 {
   [Fact]
   public void GivenOneRepAtRpeTenReturnCorrespondingPercentage()
   {
-    var reps = 1;
-    var rpe = RPE.From(10);
+    var reps = Reps.From(1);
+    var rpe = ProgressionLab.Core.RPE.RPE.From(10);
     var rpePercentage = RpePercentages.Get(reps, rpe);
     rpePercentage.ShouldBe(1);
   }
@@ -22,6 +23,6 @@ public class RpePercentagesTableTests
   [InlineData(5)]
   public void PercentageTableCannotCalculateRpeBelowSix(decimal rpe)
   {
-    Should.Throw<DomainException>(() => RpePercentages.Get(1, RPE.From(rpe)));
+    Should.Throw<DomainException>(() => RpePercentages.Get(Reps.From(1), ProgressionLab.Core.RPE.RPE.From(rpe)));
   }
 }
