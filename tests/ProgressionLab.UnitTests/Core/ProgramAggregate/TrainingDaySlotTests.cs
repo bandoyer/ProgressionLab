@@ -43,7 +43,7 @@ public class TrainingDaySlotTests
       RPE.From(8),
       SetCount.From(1)));
 
-    slot.Prescription.ShouldNotBeNull();
+    slot.GetPrescriptions().Count.ShouldBe(1);
   }
 
   [Theory]

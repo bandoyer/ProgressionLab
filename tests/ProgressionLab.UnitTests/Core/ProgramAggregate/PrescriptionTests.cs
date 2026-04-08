@@ -20,4 +20,19 @@ public class PrescriptionTests
   {
     Should.Throw<Vogen.ValueObjectValidationException>(() => PercentageOfOneRepMax.From(percentage));
   }
+
+  [Fact]
+  public void SlotCanHaveMultiplePrescriptions()
+  {
+    var slot = new Program(ProgramName.From("prog name"))
+      .CreateBlock(BlockName.From("block one"))
+      .CreateWeek()
+      .CreateTrainingDay()
+      .CreateSlot();
+    
+    slot.SetPrescription(new Prescription(Reps.From(1), RPE.From(9), SetCount.From(4)));
+    slot.SetPrescription(new Prescription(Reps.From(4), RPE.From(8), SetCount.From(6)));
+
+    slot.GetPrescriptions().Count.ShouldBe(2);
+  }
 }

@@ -2,10 +2,15 @@
 
 public class Slot
 {
-  public Prescription? Prescription { get; private set; }
+  private List<Prescription> Prescriptions { get; } = [];
   
   public void SetPrescription(Prescription prescription)
   {
-    Prescription = prescription;
+    Prescriptions.Add(prescription);
+  }
+
+  public IReadOnlyList<Prescription> GetPrescriptions()
+  {
+    return Prescriptions.AsReadOnly();
   }
 }
