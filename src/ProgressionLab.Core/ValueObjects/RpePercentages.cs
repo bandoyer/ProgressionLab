@@ -1,6 +1,6 @@
 ﻿namespace ProgressionLab.Core.ValueObjects;
 
-public record RpePercentages
+public sealed record RpePercentages
 {
   private static Dictionary<(int reps, decimal rpe), decimal> Table { get; } =
   new()
@@ -35,6 +35,10 @@ public record RpePercentages
   public static decimal Get(int reps, RPE rpe)
   {
     var key = (reps, rpe.Value);
-    return Table[key];
+    
+    if (!Table.TryGetValue(key, out var percentage))
+      throw new DomainException($"No RPE percentage exists for {reps} reps at RPE {rpe.Value}.");
+
+    return percentage;
   }
 }

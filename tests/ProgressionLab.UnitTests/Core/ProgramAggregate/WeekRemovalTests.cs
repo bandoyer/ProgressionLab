@@ -1,4 +1,5 @@
 using ProgressionLab.Core.ProgramAggregate;
+using ProgressionLab.Core.ProgramAggregate.Exceptions;
 
 namespace ProgressionLab.UnitTests.Core.ProgramAggregate;
 
@@ -55,5 +56,18 @@ public class WeekRemovalTests
       WeekNumber.From(2),
       WeekNumber.From(3)
     ]);
+  }
+
+  [Fact]
+  public void RemovingNonFinalWeekThrowsException()
+  {
+    var program = new Program(ProgramName.From("test prog"));
+    var block = program.CreateBlock(BlockName.From("block 1"));
+    block.CreateWeek();
+    var weekTwo = block.CreateWeek();
+    block.CreateWeek();
+
+    var action = () => block.RemoveWeek(weekTwo);
+    action.ShouldThrow<CannotRemoveNonFinalWeekException>();
   }
 }

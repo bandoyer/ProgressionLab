@@ -2,7 +2,7 @@
 
 namespace ProgressionLab.Core.ProgramAggregate;
 
-public class Prescription
+public sealed record Prescription
 {
   public Reps Reps { get; }
   public RPE Rpe { get; }

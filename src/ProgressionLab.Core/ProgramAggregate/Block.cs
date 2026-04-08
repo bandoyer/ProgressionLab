@@ -1,4 +1,6 @@
-﻿namespace ProgressionLab.Core.ProgramAggregate;
+﻿using ProgressionLab.Core.ProgramAggregate.Exceptions;
+
+namespace ProgressionLab.Core.ProgramAggregate;
 
 public class Block
 {
@@ -21,12 +23,19 @@ public class Block
 
   public IReadOnlyList<Week> GetWeeks() => Weeks.AsReadOnly();
 
-  public void RemoveWeek(Week week) => Weeks.Remove(week);
+  public void RemoveWeek(Week week)
+  {
+    var finalWeek = Weeks.SingleOrDefault(w => w.Number == Weeks.Count);
+    if (week.Number != finalWeek?.Number)
+      throw new CannotRemoveNonFinalWeekException();
+    
+    Weeks.Remove(week);
+  }
 
   public void RemoveWeek(WeekNumber weekNumber)
   {
     var week = Weeks.SingleOrDefault(w => w.Number == weekNumber);
     if (week != null)
-      Weeks.Remove(week);
+      RemoveWeek(week);
   }
 }
