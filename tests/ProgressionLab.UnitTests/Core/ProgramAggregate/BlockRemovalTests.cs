@@ -30,4 +30,14 @@ public class BlockRemovalTests
     program.RemoveBlock(BlockName.From("block 2"));
     program.GetBlocks().Count.ShouldBe(1);
   }
+
+  [Fact]
+  public void RemovingBlockIsCaseInsensitive()
+  {
+    var program = new Program(ProgramName.From("test prog"));
+    program.CreateBlock(BlockName.From("block 1"));
+    program.RemoveBlock(BlockName.From("BlOcK 1"));
+    
+    program.GetBlocks().ShouldBeEmpty();
+  }
 }

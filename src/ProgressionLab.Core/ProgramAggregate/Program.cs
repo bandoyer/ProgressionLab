@@ -31,7 +31,7 @@ public class Program : EntityBase<Program, ProgramId>
 
   public void RemoveBlock(BlockName blockName)
   {
-    var block = Blocks.SingleOrDefault(b => b.Name == blockName);
+    var block = Blocks.SingleOrDefault(b => b.Name.Value.Equals(blockName.Value, StringComparison.OrdinalIgnoreCase));
     if (block != null)
       Blocks.Remove(block);
   }
